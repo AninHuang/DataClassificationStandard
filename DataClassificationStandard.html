@@ -1,0 +1,1549 @@
+<!doctype html>
+<html>
+
+<head>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/solid.css" integrity="sha384-HTDlLIcgXajNzMJv5hiW5s2fwegQng6Hi+fN6t5VAcwO/9qbg2YEANIyKBlqLsiT" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/fontawesome.css" integrity="sha384-8WwquHbb2jqa7gKWSoAwbJBV2Q+/rQRss9UXL5wlvXOZfSodONmVnifo/+5xJIWX" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/regular.css" integrity="sha384-R7FIq3bpFaYzR4ogOiz75MKHyuVK0iHja8gmH1DHlZSq4tT/78gKAa7nl4PJD7GP" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/fontawesome.css" integrity="sha384-8WwquHbb2jqa7gKWSoAwbJBV2Q+/rQRss9UXL5wlvXOZfSodONmVnifo/+5xJIWX" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<!-- languageSwitch -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('.languageSwitch #EngBtn').on('click', function() {
+				$('#EngVersion').show().siblings('div').hide();
+			});
+			$('.languageSwitch #ChiBtn').on('click', function() {
+				$('#ChiVersion').show().siblings('div').hide();
+			});
+		});
+	</script>
+<!-- Data Management Sub Content -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#DataManagement a').on('click', function() {
+				$(this).css({'color' : '#d93954', 'border-color' : '#d93954'}).siblings('a').css({'color' : '#888', 'border-color' : '#888'});
+				var index = $(this).index();
+				$('#DataManagement div:eq(' + index + ')').show().siblings('div').hide();
+			});
+		});
+	</script>
+
+	<!-- tab -->
+	<script>
+		$(document).ready(function() {
+
+			(function($) {
+				$('.tab ul.tabs').addClass('active').find('> li:eq(0)').addClass('current');
+
+				$('.tab ul.tabs li a').click(function(g) {
+					var tab = $(this).closest('.tab'),
+						index = $(this).closest('li').index();
+
+					tab.find('ul.tabs > li').removeClass('current');
+					$(this).closest('li').addClass('current');
+
+					tab.find('.tab_content').find('div.tabs_item').not('div.tabs_item:eq(' + index + ')').hide();
+					tab.find('.tab_content').find('div.tabs_item:eq(' + index + ')').show();
+
+					g.preventDefault();
+				});
+			})(jQuery);
+
+		});
+	</script>
+	<style>
+		* {
+			font-family: Arial, 'Microsoft JhengHei';
+		}
+
+		table p,
+		th,
+		td,
+		li {
+			font-family: Georgia, 'Microsoft JhengHei' !important;
+		}
+
+		.border {
+			margin: auto;
+			margin-bottom: 20px;
+			max-width: 1030px;
+			height: auto;
+		}
+
+		#logo {
+			display: inline-block;
+			margin-top: 2px;
+			margin-left: 16px;
+		}
+
+		#titleName {
+			display: inline-block;
+			margin-top: 22px;
+			padding-bottom: 2px;
+			font-family: SimSun, "Microsoft JhengHei UI";
+			font-size: 24px;
+			font-weight: bold;
+			color: #d93954;
+			/*		border-bottom: 1px solid #d93954;*/
+			width: 900px;
+		}
+
+		#titleName span {
+			font-size: 15px;
+			font-family: Georgia;
+		}
+
+		#titleName #line {
+			display: block;
+			margin-top: -6px;
+			margin-left: 155px;
+			width: 750px;
+			border-bottom: 1px solid #d93954;
+			padding: 0;
+		}
+
+		.languageSwitch {
+			position: absolute;
+			top: -28px;
+			right: 0px;
+		}
+
+		.languageSwitch a {
+			float: right;
+			font-family: Georgia, 'Microsoft JhengHei' !important;
+			font-size: 14px;
+			font-weight: bold;
+			text-align: center;
+			line-height: 30px;
+			color: #d93954;
+			/* background: #fff;
+			border-radius: 2px;
+			border: 1px solid #d93954;
+			width: 60px;
+			height: 30px; */
+			margin: 0;
+			cursor: pointer;
+			outline: none;
+			text-decoration: none;
+		}
+
+		/* #EngBtn {
+			font-size: 12px !important;
+		} */
+
+		#PDFlink {
+			float: left;
+			font-size: 14px;
+			font-family: Georgia, 'Microsoft JhengHei';
+			margin-left: 15px;
+			/* margin: 12px 0px 0px 15px; */
+		}
+
+		table {
+			margin: 0px auto 11px 15px;
+			font-family: Arial, "Microsoft JhengHei UI";
+			border-collapse: collapse;
+			max-width: 1300px;
+			clear: both;
+		}
+
+		td,
+		th {
+			border: 1px solid #dddddd;
+			text-align: left;
+		}
+
+		table tr th {
+			text-align: center;
+			color: #d93954;
+			background-color: #f7f7f7;
+		}
+
+		table tr th:first-child {
+			font-weight: bold;
+			width: 13% !important;
+		}
+
+		table tr th {
+			width: 29%;
+		}
+
+		table tr td:first-child {
+			text-align: center;
+			vertical-align: middle;
+			color: #d93954;
+			font-weight: bold;
+			line-height: 23px;
+			background-color: #f7f7f7;
+		}
+
+		table tr td p {
+			color: #d93954;
+			font-weight: bold;
+			line-height: 0.5;
+			margin: 8px 3px;
+		}
+
+		td {
+			vertical-align: top;
+		}
+
+		td p,
+		li,
+		th,
+		table tr:nth-child(2) td:nth-child(3),
+		table tr:nth-child(2) td:last-child {
+			font-size: 14px;
+		}
+
+		table li {
+			margin: 0.1em 0;
+		}
+
+		#EngVersion li {
+			margin: 0.4em 0 !important;
+		}
+
+		table ul {
+			padding: 0px 1px 0px 21px;
+			margin: 0;
+		}
+
+		table ul ul {
+			list-style-type: disc;
+			padding-left: 35px;
+		}
+
+		table p+ul {
+			padding: 0px 0px 0px 49px;
+		}
+
+		a {
+			color: #d93954;
+			font-family: Georgia, 'Microsoft JhengHei' !important;
+		}
+
+		/* tab */
+		.tab {
+			padding-top: 20px;
+			margin-bottom: 20px;
+			position: relative;
+			overflow: hidden;
+			background: #fff;
+			width: 100%;
+			margin-right: 15px;
+			font-family: Georgia, 'Microsoft JhengHei';
+			line-height: 1.5;
+		}
+
+		.tabs {
+			display: table;
+			position: relative;
+			overflow: hidden;
+			margin: 0;
+			width: 100%;
+		}
+
+		.tabs::after {
+		  position: absolute;
+			content:'';
+			width: 800px;
+	    height: 0;
+	    bottom: 0px;
+	    border-bottom: 2px solid #D93954;
+		}
+
+		.tabs li {
+			float: left;
+			overflow: hidden;
+			padding: 0;
+			position: relative;
+			width: 250px;
+		}
+
+		.tabs a {
+			background-color: #f7f7f7;
+			border-bottom: 1px solid #fff;
+			color: #888;
+			font-weight: bold;
+			display: block;
+			letter-spacing: 0;
+			outline: none;
+			padding: 5px 20px;
+			text-decoration: none;
+			-webkit-transition: all 0.2s ease-in-out;
+			-moz-transition: all 0.2s ease-in-out;
+			transition: all 0.2s ease-in-out;
+			border-bottom: 2px solid #D93954;
+		}
+
+		.tab_content {
+			position: relative;
+		}
+
+		.tabs_item {
+			display: none;
+			padding: 20px 0;
+		}
+
+		.tabs_item h4 {
+			font-weight: bold;
+			color: blue;
+			font-size: 20px;
+		}
+
+		.tabs_item img {
+			width: 200px;
+			float: left;
+			margin-right: 30px;
+		}
+
+		.tabs_item:first-child {
+			display: block;
+		}
+
+		.current a {
+			color: #fff;
+			background: #d93954;
+		}
+		/* Data Management tab content */
+		#DataManagement {
+			font-size: 14px !important;
+		}
+		#DataManagement div {
+			margin-top: 20px;
+		}
+		#DataManagement table tr th:first-child {
+			width: 35% !important;
+		}
+		#DataManagement table tr th:nth-child(2) {
+			width: 27% !important;
+		}
+		#DataManagement table tr th {
+			width: 10% !important;
+			padding: 2px;
+		}
+		#DataManagement table tr td:first-child {
+      text-align: left;
+			vertical-align: middle;
+			color: #000;
+			font-weight: normal;
+			line-height: 23px;
+			background-color: #fff;
+		}
+		#DataManagement table tr td {
+			padding: 5px;
+			vertical-align: middle;
+			text-align: center;
+		}
+		#DataManagement table tr td:first-child, #DataManagement table tr td:nth-child(2) {
+			text-align: left;
+		}
+		#DataManagement a {
+			margin: 0 10px 0 15px;
+			padding: 8px;
+			color: #888;
+			border: 1px solid #888;
+			border-radius: 5px;
+			text-decoration: none;
+		}
+		#DataManagement a:hover {
+			color: #d93954;
+			border: 1px solid #d93954;
+		}
+		i {
+			color: #888;
+		}
+	</style>
+	<meta charset="utf-8">
+	<title>資料分級標準</title>
+</head>
+
+<body style="width: 1024px; margin: 0 auto;">
+	<div class="border">
+		<div style="white-space: nowrap;">
+			<img id="logo" src="PwCLogo.jpg" width="99" height="46" alt="" />
+			<p id="titleName">資料分級標準<span id="line"></span></p>
+		</div>
+		<div id="PDFlink">詳細資訊請參考(Please refer to the link for more information)：<a href="FY18_ISP_PwC_Data_Classification_Standard.pdf" target="_blank">FY18 ISP Standard Network Data Classification Standard</a></div>
+
+		<div class="tab">
+
+			<ul class="tabs" style="padding: 0 15px !important;">
+				<li><a href="#">資料分級標準<br>Data Classification Standard</a></li>
+				<li><a href="#">資料處理程序<br>Data Management</a></li>
+			</ul>
+			<!-- / tabs -->
+
+			<div class="tab_content">
+
+				<div class="tabs_item">
+					<div id="ChiVersion">
+						<div class="languageSwitch">
+							<a id="EngBtn"> |  English</a>
+							<a id="ChiBtn">中文&nbsp;</a>
+					</div>
+
+						<table>
+							<tr>
+								<th>類別</th>
+								<th>PwC 資訊</th>
+								<th>個人資料</th>
+								<th>客戶資訊</th>
+							</tr>
+							<tr>
+								<td>Public<br>(DC0)</td>
+								<td>
+									<ul>
+										<li>對外網站內容</li>
+										<li>行銷資訊</li>
+										<li>對外發布之新聞稿內容</li>
+										<li>公開於社交平台之內容（例如：LinkedIn, YouTube, Facebook）</li>
+										<ul>
+											<li>姓名</li>
+											<li>雇主</li>
+											<li>事務所位置</li>
+											<li>事務所郵件信箱</li>
+											<li>事務所員工電話分機（應針對不同公開資訊內容予以管理）</li>
+										</ul>
+									</ul>
+								</td>
+								<td style="vertical-align: middle; text-align: center;">不適用：個人資料應屬於機密資料</td>
+								<td style="vertical-align: middle; text-align: center;">客戶公開資訊</td>
+							</tr>
+							<tr>
+								<td>Internal<br>(DC1)</td>
+								<td>
+									<ul>
+										<li>事務所內部公告內容</li>
+										<li>網站會員專區之內容</li>
+										<li>內部標準及訓練資料</li>
+										<li>公司之政策、標準、流程、範本</li>
+										<li>事務所組織架構</li>
+										<li>公司活動及公司日程安排</li>
+										<li>公司內部專案之財務內容及資訊</li>
+										<li>供客戶檢視之PwC財務資訊</li>
+										<li>透過PwC特定服務所取得的資訊</li>
+										<li>事務所網路架構</li>
+									</ul>
+								</td>
+								<td>
+									<p>合夥人及員工資訊：</p>
+									<ul>
+										<li>合夥人及員工之聯絡資訊（Email、電話等）</li>
+										<li>名片上之資訊（包含：姓名、職稱、Email、工作單位、公司地址、公司電話）</li>
+										<li>系統帳號與員工編號</li>
+										<li>職級</li>
+										<li>員工狀態（外派、留停等）</li>
+										<li>大量分析、測試之匿名資訊（所有敏感部分皆被移除或故意混淆)</li>
+										<li>員工相片</li>
+									</ul>
+									<p>客戶資訊：</p>
+									<ul>
+										<li>名片上之資訊（包含：姓名、職稱、Email、工作單位、公司地址、公司電話）</li>
+									</ul>
+								</td>
+								<td>
+									<ul>
+										<li>PwC Client Code</li>
+										<li>涉及客戶的一般商業信息（例如：資料來源，金融系統資訊）</li>
+										<li>與客戶備忘錄或提案內容（例如：無客戶識別資訊、無客戶專有資訊）</li>
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<td>Confidential<br>(DC2)</td>
+								<td>
+									<ul>
+										<li>專案內部交流之資訊（例如: 僅限小組內資訊交流）</li>
+										<li>PwC專業資訊發展及活動，包括以下:
+											<ul>
+												<li>發展策略</li>
+												<li>人力資源計畫及分布</li>
+												<li>公關對內外之活動計畫</li>
+												<li>PwC所有財務資訊（例如：PwC財務報告、併購案、調薪幅度、公費標準、財務合約、風險管理、應收應付帳款等等）</li>
+												<li>市場銷售資訊（例如：與客戶之關係、銷售對象、業績、客戶意見等等）</li>
+												<li>採購及供應商之資訊（例如：保密協定、提案、供應商評比）</li>
+												<li>企業合作關係</li>
+												<li>一般併購案資訊</li>
+												<li>客戶諮詢內容</li>
+												<li>OGC相關事務之檔案</li>
+												<li>顧問備忘錄</li>
+												<li>律師與客戶間之溝通與所建議之內容</li>
+												<li>簡報內容</li>
+												<li>RQ相關報表（例如：同意書與承諾書、反洗錢調查結果、各種品質控管檢視報告、諮詢結果）</li>
+												<li>安全事件或安全漏洞資訊</li>
+											</ul>
+										</li>
+									</ul>
+								</td>
+								<td>
+									<p>以下資訊</p>
+									<ul>
+										<li>所有在社交平台（Facebook, LinkedIn）和私人關聯之資訊內容</li>
+										<li>地理位置</li>
+										<li>履歷</li>
+										<li>年齡／生日</li>
+										<li>服役狀況</li>
+										<li>語言能力</li>
+										<li>所有用於PwC系統、軟體及硬體之密碼</li>
+										<li>性別/婚姻狀況</li>
+									</ul>
+									<p>一般合夥人與員工資訊</p>
+									<ul>
+										<li>員工個人紀錄
+											<ul>
+												<li>個人績效及發展計畫</li>
+												<li>CPE與訓練及其紀錄與成績</li>
+												<li>聘雇合約</li>
+												<li>就業紀錄／教育程度</li>
+												<li>薪資報酬及相關所有財務資訊（例如：薪資、獎金、退稅、退休金、投資）</li>
+												<li>職等及升遷歷史</li>
+												<li>福利</li>
+												<li>住家地址</li>
+												<li>緊急聯絡人、受益人</li>
+											</ul>
+										</li>
+										<li>薪資表</li>
+										<li>Independence system information（例如：持有、處置）</li>
+										<li>年度ACC填寫內容</li>
+									</ul>
+									<p>客戶資訊</p>
+									<ul>
+										<li>客戶與潛在客戶之資料</li>
+									</ul>
+									<p>供應商資訊</p>
+									<ul>
+										<li>供應商機密提案、投標書、報價單</li>
+										<li>合約</li>
+									</ul>
+								</td>
+								<td>
+									<p>一般機密資訊</p>
+									<ul>
+										<li>客戶機密資訊
+											<ul>
+												<li>提案（客戶合約條款且其敏感度可能會需要額外的處理）</li>
+												<li>客戶交付之文件</li>
+												<li>作業文件</li>
+												<li>相關作業文件（與客戶來往之信件及資訊）</li>
+												<li>政策與程序</li>
+												<li>知識產權</li>
+												<li>策略文件</li>
+												<li>一般財務報表／資訊</li>
+												<li>企業合約</li>
+											</ul>
+										</li>
+										<li>客戶財務交易數據和財務持有人數據</li>
+										<li>從其他客戶取得之機密資訊</li>
+									</ul>
+									<p>{Restricted}</p>
+									<ul>
+										<li>若客戶對象為政府機構，其相關資訊被國家安全單位以法律定義為敏感資訊</li>
+										<li style="list-style-type: none;">註：處理以上資訊時，需符合對應的資料交換政策。</li>
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<td>Highly Confidential<br>(DC3)</td>
+								<td>
+									<ul>
+										<li>Network Document：
+											<ul>
+												<li>法規</li>
+												<li>Network Standards</li>
+												<li>事務所服務條款</li>
+											</ul>
+										</li>
+										<li>特定OGC文件:
+											<ul>
+												<li>訴訟策略</li>
+												<li>保險準備金</li>
+												<li>內部審查</li>
+												<li>查核資訊</li>
+												<li>現有客戶顧問諮詢內容</li>
+												<li>未公開之企業併購收購</li>
+											</ul>
+										</li>
+										<li>事務所保險資訊（保險財務資訊、額度）</li>
+									</ul>
+								</td>
+								<td>
+									<p>All Information</p>
+									<ul>
+										<li>所有用於PwC系統、軟體及硬體之使用者名稱與密碼（使用者名稱與密碼同時存在）</li>
+										<li>下列敏感性個資：
+											<ul>
+												<li>種族、人種、國籍、公民身分</li>
+												<li>政治意見</li>
+												<li>宗教或哲學信仰</li>
+												<li>工會會員身分</li>
+												<li>基因和生物特徵資料</li>
+												<li>健康資訊/病歷/殘疾狀況</li>
+												<li>犯罪記錄或犯罪指控</li>
+												<li>性生活/性傾向</li>
+											</ul>
+										</li>
+										<li>政府核發的身分號碼（社會安全、護照、駕駛執照）</li>
+										<li>信用卡/銀行賬戶/信用查詢/財務資訊</li>
+									</ul>
+									<p>合夥人及員工資訊</p>
+									<ul>
+										<li>紀律紀錄（投訴，調查，違反獨立性行為、懲戒）</li>
+										<li>員工缺勤記錄，病假或慯殘假（健康資料）</li>
+									</ul>
+									<p>客戶及其他資料</p>
+									<ul>
+										<li>大量未經匿名化之個資（部門或PwC Member Firm薪資記錄、客戶下載之財務資訊）</li>
+										<li>客戶處理、儲存或傳輸之持卡人資訊</li>
+									</ul>
+								</td>
+								<td>
+									<ul>
+										<li>未公開之業績或其他價格相關之敏感資訊
+											<ul>
+												<li>草稿/未公開之稅務資訊</li>
+												<li>尚未公開之財務報表</li>
+												<li>內部財務控制之評估和報告</li>
+												<li>估價報告</li>
+												<li>影響股價之併購案資訊（適用內線交易等規範）</li>
+												<li>重組案</li>
+												<li>公司裁員</li>
+											</ul>
+										</li>
+										<li>高度敏感的知識產權（使用頂尖技術之設計或發明）</li>
+										<li>未公開之客戶董事會成員</li>
+										<li>任何標示為機密資訊之資料</li>
+									</ul>
+								</td>
+							</tr>
+						</table>
+					</div>
+
+					<div id="EngVersion" style="display: none;">
+						<div class="languageSwitch">
+							<a id="EngBtn"> |  English</a>
+							<a id="ChiBtn">中文&nbsp;</a>
+						</div>
+
+						<table>
+							<tr>
+								<th>Classification</th>
+								<th>PwC Data</th>
+								<th>Personal Data (PII)</th>
+								<th>Entity Data<br>(e.g. client, supplier)</th>
+							</tr>
+							<tr>
+								<td>Public<br>(DC0)</td>
+								<td>
+									<ul>
+										<li>Website content</li>
+										<li>Marketing materials</li>
+										<li>Newsletters generated for public use</li>
+										<li>Publically available content on social media or other online channels (e.g. LinkedIn, YouTube, Facebook)</li>
+										<ul>
+											<li>Name</li>
+											<li>Employer</li>
+											<li>Work address</li>
+											<li>Work email address</li>
+											<li>Work phone number<br><span style="font-family: Georgia; font-size: 12px;">*Despite this Public classification,<br>there may be additional handling<br>requirements for the above data<br>types.</span></li>
+										</ul>
+									</ul>
+								</td>
+								<td style="vertical-align: middle; text-align: left; padding: 10px;">Not Applicable as personal data should be dealt with as part of a higher data classification.
+								</td>
+								<td style="vertical-align: middle; text-align: left; padding: 10px;">Publicly available information about client or suppliers</td>
+							</tr>
+							<tr>
+								<td>Internal<br>(DC1)</td>
+								<td>
+									<ul>
+										<li>PwC office or administrative internal communications (e.g. relocation, office specific, newsletters)
+										</li>
+										<li>Website subscription content</li>
+										<li>Reference and training materials</li>
+										<li>Policies, standards, procedures, methodologies, templates</li>
+										<li>Organisational charts
+										</li>
+										<li>Event and PwC member firm calendars
+										</li>
+										<li>Internal project level financial and resource data</li>
+										<li>Revenue and other PwC financial data prepared for client distribution. (e.g. Global Annual Review)
+										</li>
+										<li>News and research information provided through subscription services
+										</li>
+										<li>Production network designs and internal hardware device IP addresses
+										</li>
+									</ul>
+								</td>
+								<td>
+									<p>Partner and Staff information:</p>
+									<ul>
+										<li>Partner and staff directories (email, phone, etc.)
+										</li>
+										<li>Business card information (name, title, email, employing firm, office address and office phone)
+										</li>
+										<li>Employee identification (GUID, application/system login ID, employee ID)
+										</li>
+										<li>Class level</li>
+										<li>Employment status</li>
+										<li>Anonymised bulk data (all sensitive elements removed or obfuscated) ulilised for analysis or testing</li>
+										<li>Employee photograph</li>
+									</ul>
+									<p>Client information</p>
+									<ul>
+										<li>Business card information (name, title, email, employer, office address and office phone)</li>
+									</ul>
+								</td>
+								<td>
+									<ul>
+										<li>PwC client numbers [identifying numbers for clients]
+										</li>
+										<li>Employer Identification Number (EIN)
+										</li>
+										<li>General business information that refers to clients [e.g. information in Source,information in financial systems]
+										</li>
+										<li>Redacted and anonymised proposal templates or sample work deliverables (i.e. no client identifying information and no client proprietary information)</li>
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<td>Confidential<br>(DC2)</td>
+								<td>
+									<ul>
+										<li>Internal communications intended for specific individuals or a known limited group. (e.g. client engagement team information sharing)
+										</li>
+										<li>Information about PwC business activities, including:
+											<ul>
+												<li>Strategy</li>
+												<li>Human resources (planning, mobility, etc.)
+												</li>
+												<li>Public Relations, communications and government relations (institutional / external relations
+												</li>
+												<li>Finance and treasury (e.g. member firm financial results, margins, inter-firm billing rates, realisation rates, financing agreements, insurance policies, accounts receivable and payable)</li>
+												<li>Marketing and Sales information (including CRM data, targets, feedback on losses, client feedback)
+												</li>
+												<li>Procurement and supplier information (e.g. non-disclosure agreements, proposals, request for proposal responses and vendor scoring).
+												</li>
+												<li>Joint business relationships (agreements, etc.)
+												</li>
+												<li>General M&A activity work</li>
+												<li>Independence consultations</li>
+												<li>General OGC files</li>
+												<li>Advice memos</li>
+												<li>Attorney-client privileged Communications and Advice on routine matters</li>
+												<li>Filed briefs</li>
+												<li>Risk & Quality output files; (e.g. acceptance and continuance, antimoney laundering findings, quality reviews, consultations)</li>
+												<li>Security incidents or security vulnerability information</li>
+											</ul>
+										</li>
+									</ul>
+								</td>
+								<td>
+									<p>All information</p>
+									<ul>
+										<li>Any Social Media (Facebook, LinkedIn) personal data content available to only those people who are personal connections
+										</li>
+										<li>Geo-location</li>
+										<li>Resumes/CVs</li>
+										<li>Age/Date of Birth</li>
+										<li>Veteran status</li>
+										<li>Languages spoken</li>
+										<li>Password or PIN number (separate from the user ID) for an individual that controls access to a PwC information or a hardware asset</li>
+										<li>Gender (e.g. Male, Female) / marital status
+										</li>
+									</ul>
+									<p>Partner and staff information General
+									</p>
+									<ul>
+										<li>Staff personnel records
+											<ul>
+												<li>Performance evaluations, ratings and development plans</li>
+												<li>CPE and training records, learning records and transcripts</li>
+												<li>Employment agreement</li>
+												<li>Job history / education</li>
+												<li>Compensation and Financial Data (e.g. Salary, bonus, tax returns, retirement benefits, investments)
+												</li>
+												<li>Class levels and promotion history
+												</li>
+												<li>Benefits</li>
+												<li>Home address</li>
+												<li>Emergency contact information, next of kin and beneficiaries</li>
+											</ul>
+										</li>
+										<li>Payroll</li>
+										<li>Independence system information (e.g. holdings, disposal)</li>
+										<li>Annual Compliance Confirmation</li>
+									</ul>
+									<p>Client information</p>
+									<ul>
+										<li>CRM data regarding client and potential client contacts</li>
+									</ul>
+									<p>Supplier Information</p>
+									<ul>
+										<li>Confidential vendor proposals, tenders, quotations
+										</li>
+										<li>Contracts</li>
+									</ul>
+								</td>
+								<td>
+									<p>Confidential data - General</p>
+									<ul>
+										<li>Confidential client files
+											<ul>
+												<li>Proposals (*engagement client contract terms and sensitivity may drive additional handling requirements)</li>
+												<li>Deliverables</li>
+												<li>Work papers</li>
+												<li>Supporting documentation for work papers (e.g. emails,information submitted by client, etc.)
+												</li>
+												<li>Policies and procedures</li>
+												<li>Intellectual property</li>
+												<li>Strategy documents</li>
+												<li>General financial statements/information
+												</li>
+												<li>Trial Balance</li>
+												<li>Engagement contracts</li>
+											</ul>
+										</li>
+										<li>Client financial transaction data and financial holdings data for individuals
+										</li>
+										<li>Individual and Corporate Tax Returns
+										</li>
+										<li>Other confidential information received from PwC clients <span style="style=" font-family: Georgia; font-size: 14px; " text-decoration: underline;">or
+			other parties with whom we do
+			business</span></li>
+									</ul>
+									<p>{Restricted}</p>
+									<ul>
+										<li>Data of government clients or other data that is designated as sensitive from a national security standpoint under relevant local law (e.g., China State Secrets, US government data, etc.)<br>** Note special handling requirements will often apply
+											to such data,including, for example, restrictions on data export and on handling of data by foreign nationals.
+										</li>
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<td>Highly Confidential<br>(DC3)</td>
+								<td>
+									<ul>
+										<li>Network Document：
+											<ul>
+												<li>Regulations</li>
+												<li>Network Standards</li>
+												<li>Firm Services Agreement</li>
+											</ul>
+										</li>
+										<li>Certain OGC files:
+											<ul>
+												<li>Litigation strategy</li>
+												<li>Insurance reserves</li>
+												<li>Internal investigations</li>
+												<li>Regulatory investigations</li>
+												<li>Counselling on active client matters</li>
+												<li>Non-public M&A activity (e.g. PwC acquisitions)</li>
+											</ul>
+										</li>
+										<li>PwC insurance information (e.g., captive insurer’s financial data, member firm insurance limits)</li>
+									</ul>
+								</td>
+								<td>
+									<p>All Information</p>
+									<ul>
+										<li>Sets of user credentials (user ID and Password or PIN number combinations) for a set of individuals. Credentials that control access to a PwC information or a hardware asset</li>
+										<li>Special categories of sensitive personal data:
+											<ul>
+												<li>Race/ethnic origin /nationality/citizenship status</li>
+												<li>Political opinions</li>
+												<li>Religious or philosophical beliefs
+												</li>
+												<li>Trade Union status</li>
+												<li>Genetic and biometric data</li>
+												<li>Health information / medical records / Disability status
+													<br><span style="font-family: Georgia; font-size: 12px; display: inline-block; margin: 5px 0 0 20px;">Covered Information:
+			Protected Health
+			Information (PHI or ePHI),
+			any information in a medical
+			record that can be used to
+			identify an individual, and
+			that was created, used, or
+			disclosed in the course of
+			providing a health care
+			service, such as a diagnosis
+			or treatment.</span></li>
+												<li>Criminal records or allegations of criminal offense</li>
+												<li>Sex life / sexual orientation</li>
+											</ul>
+										</li>
+										<li>Government issued ID numbers (SSN, Passport, driver’s license)</li>
+										<li>Credit card / bank account /credit check / financial information</li>
+									</ul>
+									<p>Partner and staff information</p>
+									<ul>
+										<li>Disciplinary records (ethics complaints, investigations, independence violations, reprimands)
+										</li>
+										<li>Staff absence records, sick or disability leaves (health data)
+										</li>
+									</ul>
+									<p>Client and others’ information</p>
+									<ul>
+										<li>Large data sets of PII which have not been aggregated or anonymised (e.g. payroll file for a department or member firm, client downloaded financial information)
+										</li>
+										<li>Client stored, processed or transmitted cardholder data</li>
+									</ul>
+								</td>
+								<td>
+									<ul>
+										<li>Non-public financial performance or otherwise price sensitive data
+											<ul>
+												<li>draft/unpublished government tax forms</li>
+												<li>pre-issuance financial statements
+												</li>
+												<li>assessments and reports of internal financial controls
+												</li>
+												<li>valuations</li>
+												<li>M&A work that is stock market price sensitive (where insider trading rules would apply)</li>
+												<li>restructuring</li>
+												<li>redundancies</li>
+											</ul>
+										</li>
+										<li>Highly sensitive Intellectual Property (e.g. for cutting edge technology or high-profile designs and inventions)</li>
+										<li>Names of client board members that are not publicly available</li>
+										<li>Classified Information (e.g. information government entities identify as “classified”)</li>
+									</ul>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			<!-- / tabs_item -->
+
+			<div class="tabs_item" id="DataManagement">
+				<a href="#" style="color: #D93954; border-color: #D93954;">Data in Use</a>
+				<a href="#">Data in Motion</a>
+				<a href="#">Data Storage / at Rest</a>
+				<a href="#">Application Requirements</a>
+
+				<ul class="fa-ul fa-pull-right" style="position: absolute; top: 28px; right: 0; color: #888;">
+					<li style="float: left; margin: 0 8px 0 20px; font-size: 12px;"><span class="fa-li" style="left: -20px !important;"><i class="fas fa-check"></i></span>Required</li>
+					<li style="float: left; margin: 0 8px 0 20px; font-size: 12px;"><span class="fa-li" style="left: -20px !important;"><i class="far fa-circle"></i></span>Recommend</li>
+					<li style="float: left; margin: 0 0 0 20px; font-size: 12px;"><span class="fa-li" style="left: -20px !important;"><i class="fas fa-minus"></i></span>Not Required</li>
+				</ul>
+
+				<!-- Data in Use section-->
+				<div>
+				<table>
+					<tr>
+						<th>英文敘述</th>
+						<th>中文敘述</th>
+						<th>Public</th>
+						<th>Internal</th>
+						<th>Confidential</th>
+						<th>Highly Confidential</th>
+					</tr>
+					<tr>
+						<td colspan="6" style="text-align: center; vertical-align: middle; color: #fff; background-color: #d93954; font-weight:bold; padding: 0!important;">Data in Use</td>
+					</tr>
+					<tr>
+						<td colspan="6" style="text-align: center; vertical-align: middle; color: #d93954; background-color: #f7f7f7; font-weight:bold; font-size: 14px; padding: 0!important;">Access and Approvals</td>
+					</tr>
+					<tr>
+						<td>Restrict access to a 'need to know' basis.</td>
+						<td>僅限需知道的人員存取</td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="far fa-circle"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+					</tr>
+					<tr>
+						<td>Information Owner or approved designee must be an additional approver for access to information systems containing data. (e.g. internal human capital, accounting)</td>
+						<td>此類資訊需經資訊所有人或其指定人員核准後使得存取</td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="far fa-circle"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+					</tr>
+					<tr>
+						<td>Information Owner or approved designee must establish access rights / distribution requirements for data. (e.g. share drives, collaboration sites, direct data access)</td>
+						<td>資訊所有人或其指定人員需建立存取權限清單</td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="far fa-circle"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+					</tr>
+					<tr>
+						<td>Information Owner or approved designee must review access rights to data periodically or when classification levels change.</td>
+						<td>資訊所有人或其指定人員需於資料分類規則變更時審核存取權限，亦需定期檢視此清單</td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="far fa-circle"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+					</tr>
+					<tr>
+						<td>Information Owner or approved designee must approve removal of data from Firm premises.</td>
+						<td>須由資訊所有人或其指定人員核准後才能移除資料</td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="far fa-circle"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+					</tr>
+					<tr>
+						<td>Information Owner or approved designee must approve sharing of data internally.</td>
+						<td>須由資訊所有人或其指定人員核准後才能對內公布資訊</td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+					</tr>
+					<tr>
+						<td>Information Owner or approved designee must approve sharing of data externally.</td>
+						<td>須由資訊所有人或其指定人員核准後才能對外公布資訊</td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+					</tr>
+					<tr>
+						<td>Non-disclosure or confidentiality agreement must be in place with individuals or third-parties prior to sharing data.</td>
+						<td>必須與廠商或個人簽署機密資訊等協議後才能共享資訊</td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+					</tr>
+					<tr>
+						<td>Background checks, where legally permissible and training for PwC employees and staff must be completed prior to granting access to data.</td>
+						<td>必須經過背景調查且經過訓練的PwC員工才能取得權限</td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+					</tr>
+					<tr>
+						<td colspan="6" style="text-align: center; vertical-align: middle; color: #d93954; background-color: #f7f7f7; font-weight:bold; font-size: 14px; padding: 0!important;">Marking / Labelling</td>
+					</tr>
+					<tr>
+						<td>Removable storage media must include a label on the exterior of thecontainer.<br><br>Label must not be easily removable and include at a minimum:
+• Asset number as assigned by IT, details for return using a general support phone number and must not indicate the PwC company or brand on the label (e.g. NOT include PwC name, address, individual contact information) to prevent from highlighting a sensitive asset.</td>
+						<td>資料若儲存於行動儲存裝置須於外觀標示標簽。<br><br>標簽須至少符合以下要件：由GTS賦予其資產編號並標示電話號碼，不得包含任何PwC資訊、(如:PwC、資誠、公司地址、任何個人聯絡資訊 )。</td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+					</tr>
+					<tr>
+						<td>All electronic data (e.g. PwC reports, spreadsheets, PowerPoint and PDF documents) must be labelled in the metadata per classification level and include distribution limitations in the footer, where applicable. (e.g. Internal Use Only, Confidential Document)</td>
+						<td>所有電子文件(PwC reports、Excel、 PPT、PDF…etc.)須於頁腳或任何地方標示其文件等級（如內部使用，機密文件）</td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="far fa-circle"></i></td>
+						<td><i class="far fa-circle"></i></td>
+						<td><i class="fas fa-check"></i></td>
+					</tr>
+					<tr>
+						<td>Clearly mark classification on physical medium.</td>
+						<td>實體文件需清楚標示文件等級</td>
+						<td><i class="far fa-circle"></i></td>
+						<td><i class="far fa-circle"></i></td>
+						<td><i class="far fa-circle"></i></td>
+						<td><i class="far fa-circle"></i></td>
+					</tr>
+					<tr>
+						<td colspan="6" style="text-align: center; vertical-align: middle; color: #d93954; background-color: #f7f7f7; font-weight:bold; font-size: 14px; padding: 0!important;">Photocopying</td>
+					</tr>
+					<tr>
+						<td>Permission from the Information Owner should be obtained prior to making any copies or taking any photos (e.g., using phone, camera, or other device) of data.<br><br>Highly confidential data to be distributed should have a unique identifier for each recipient the data is shared with.</td>
+						<td>在製作任何副本或攝影照片（例如使用手機，相機或其他設備）前取得所有人許可<br><br>需發佈之高度機密需備賦予獨立的識別碼</td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="far fa-circle"></i></td>
+					</tr>
+					<tr>
+						<td>Copies of the data follow the same storage and handling requirements as the originals.</td>
+						<td>資料副本亦需遵循正本所有規定</td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+					</tr>
+					<tr>
+						<td>Use of collaboration tools to share data must be controlled to include only authorised participants. (e.g. recommend using controls like webex passcodes/passwords)</td>
+						<td>使用協作平台分享資訊需運用方法設定其存取權限(如：密碼)</td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="far fa-circle"></i></td>
+						<td><i class="far fa-circle"></i></td>
+						<td><i class="fas fa-check"></i></td>
+					</tr>
+					<tr>
+						<td colspan="6" style="text-align: center; vertical-align: middle; color: #d93954; background-color: #f7f7f7; font-weight:bold; font-size: 14px; padding: 0!important;">Printing, Scanning or Faxing</td>
+					</tr>
+					<tr>
+						<td>Data must be printed, scanned or
+faxed from and to individuals using a secured ID or within a secured area.</td>
+						<td>列印或傳真或掃描，需有身分識別機制或在安全的區域執行</td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="far fa-circle"></i></td>
+						<td><i class="fas fa-check"></i></td>
+					</tr>
+					<tr>
+						<td>Receipt confirmation of faxed or
+remotely scanned or remotely printed data sent externally to an individual must be acknowledged.</td>
+						<td>列印或傳真或掃描文件至外部人員後須作確認</td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="far fa-circle"></i></td>
+						<td><i class="fas fa-check"></i></td>
+					</tr>
+					<tr>
+						<td>Printers, scanners, and fax machines must not retain the data upon completion of job.</td>
+						<td>傳真、列印、掃描設備，在完成工作後不得保留文件</td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="far fa-circle"></i></td>
+						<td><i class="fas fa-check"></i></td>
+					</tr>
+					<tr>
+						<td colspan="6" style="text-align: center; vertical-align: middle; color: #d93954; background-color: #f7f7f7; font-weight:bold; font-size: 14px; padding: 0!important;">Voice</td>
+					</tr>
+					<tr>
+						<td>Be aware of surroundings when reading, discussing, or otherwise communicating data in public places (e.g., airplanes, restaurants, elevators, cell phone conversation, hangouts, etc.).</td>
+						<td>討論、閱讀資訊時需隨時注意四周環境，避免資訊被旁人竊聽</td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="far fa-circle"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+					</tr>
+					<tr>
+						<td>Refrain from leaving messages<br><br>containing data on answering machines or voicemail systems.</td>
+						<td>禁止留言相關資訊於任何Voicemail<br>語音留言不得保留超過7天</td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="far fa-circle"></i></td>
+						<td><i class="far fa-circle"></i></td>
+						<td><i class="fas fa-check"></i></td>
+					</tr>
+					<tr>
+						<td>Conference call discussions around
+data must include only authorized participants (e.g. recommend using controls like web ex passcodes/passwords)</td>
+						<td>控管參與電話會議之人員(建議使用WebEx或是使用密碼)</td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="far fa-circle"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+					</tr>
+					<tr>
+						<td colspan="6" style="text-align: center; vertical-align: middle; color: #d93954; background-color: #f7f7f7; font-weight:bold; font-size: 14px; padding: 0!important;">Foreign Travel</td>
+					</tr>
+					<tr>
+						<td>Refer to Member Firm local travel policies where applicable.</td>
+						<td>參考各Member Firm Local Policy</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+			</div>
+			<!-- End of Data in Use section-->
+			<!-- Data in Motion section-->
+			<div style="display: none;">
+				<table>
+					<tr>
+						<th>英文敘述</th>
+						<th>中文敘述</th>
+						<th>Public</th>
+						<th>Internal</th>
+						<th>Confidential</th>
+						<th>Highly Confidential</th>
+					</tr>
+					<tr>
+						<td colspan="6" style="text-align: center; vertical-align: middle; color: #fff; background-color: #d93954; font-weight:bold; padding: 0!important;">Data in Motion</td>
+					</tr>
+					<tr>
+						<td colspan="6" style="text-align: center; vertical-align: middle; color: #d93954; background-color: #f7f7f7; font-weight:bold; font-size: 14px; padding: 0!important;">E-mail Exchange</td>
+					</tr>
+					<tr>
+						<td>E-mail attachments must be encrypted using approved methods (e.g., WinZip with 256-bit, PGP, or minimum 128-bit encryption, etc.).<br><br>Highly confidential data must not
+be included in the body of an email message to prevent mistaken distribution.</td>
+						<td>Email附件需加密<br><br>高機密資料不得直接放置於Email信件內文</td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="far fa-circle"></i></td>
+						<td><i class="fas fa-check"></i></td>
+					</tr>
+					<tr>
+						<td>Passwords for encrypted files should be provided through a separate channel other than email (e.g. phone, fax, SMS text message) and follow PwC minimum password complexity requirements defined in the Global ISP.</td>
+						<td>加密資料的密碼不得使用同樣管道傳送(如信件壓縮檔案的密碼，可透過電話，簡訊傳送，不得使用Email)</td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="far fa-circle"></i></td>
+						<td><i class="fas fa-check"></i></td>
+					</tr>
+					<tr>
+						<td>E-mail should only be sent to named individuals and not to group E-mail distribution lists or addresses.</td>
+						<td>Email收信人欄位只能是單一個人，不能為群組</td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="far fa-circle"></i></td>
+						<td><i class="fas fa-check"></i></td>
+					</tr>
+					<tr>
+						<td colspan="6" style="text-align: center; vertical-align: middle; color: #d93954; background-color: #f7f7f7; font-weight:bold; font-size: 14px; padding: 0!important;">Transport (General)</td>
+					</tr>
+					<tr>
+						<td>Data sent outside of the PwC network should be transferred using a secure file exchange service or process (e.g. PKI enabled website, client hosted secure FTP, MFT- 2Go)</td>
+						<td>需使用安全的檔案傳輸方式將資訊傳送至外部(如： PKI enabled website, client hosted secure FTP, MFT- 2Go)</td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="far fa-circle"></i></td>
+						<td><i class="far fa-circle"></i></td>
+						<td><i class="fas fa-check"></i></td>
+					</tr>
+					<tr>
+						<td>Must only take hard copy documents from office if transferred directly between office/home/client. (not via pub, bar, gym, restaurant, etc.)</td>
+						<td>如自辦公室往返家中或客戶所在地，請僅攜帶文件之副本</td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="far fa-circle"></i></td>
+						<td><i class="fas fa-check"></i></td>
+					</tr>
+					<tr>
+						<td>Pickup, receipt, transfer, and delivery of information media must be restricted to authorised personnel or approved courier. Automated tracking and accountability controls should be used.</td>
+						<td>資料須經由已授權人員取得、接收、傳送、轉移。資料（包裹）需有自動追蹤機制。</td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="far fa-circle"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+					</tr>
+					<tr>
+						<td>Must obtain client approval to transport hard copy or electronic copy data from client site.</td>
+						<td>經手轉移任何客戶資料(軟硬體資料)都須經過客戶核准</td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="far fa-circle"></i></td>
+						<td><i class="far fa-circle"></i></td>
+						<td><i class="fas fa-check"></i></td>
+					</tr>
+					<tr>
+						<td>Delivery of hard copies be sealed in
+a package with a return address provided and sent only to designated authorized individuals who confirm receipt of delivery. (e.g., via phone call, individual mail, signature, etc.).</td>
+						<td>實體資料須封存於含有Return地址的包裹，接收時須由指定授權人員接收，並需要有確認的動作。</td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="far fa-circle"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+					</tr>
+					<tr>
+						<td>Refer to local member firm secure workspace and acceptable use policies for additional data handling requirements.</td>
+						<td>參考各Member Firm Local Policy</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+			</div>
+			<!-- End of Data in Motion section-->
+      <!-- Data Storage / at Rest section-->
+			<div style="display: none;">
+				<table>
+					<tr>
+						<th>英文敘述</th>
+						<th>中文敘述</th>
+						<th>Public</th>
+						<th>Internal</th>
+						<th>Confidential</th>
+						<th>Highly Confidential</th>
+					</tr>
+					<tr>
+						<td colspan="6" style="text-align: center; vertical-align: middle; color: #fff; background-color: #d93954; font-weight:bold; padding: 0!important;">Data Storage / at Rest</td>
+					</tr>
+					<tr>
+						<td colspan="6" style="text-align: center; vertical-align: middle; color: #d93954; background-color: #f7f7f7; font-weight:bold; font-size: 14px; padding: 0!important;">Storage on Information Systems (File shares, databases, etc.)</td>
+					</tr>
+					<tr>
+						<td>Data must only be stored in approved information systems and locations (e.g., SharePoint sites, LN databases, share drive folder, etc.).</td>
+						<td>資訊需存至核准的系統內(如SharePoint sites, LN databases, share drive folder, etc)</td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+					</tr>
+					<tr>
+						<td>Only authorized individuals may
+have access to data in information systems, related backups and access be reviewed periodically as appropriate.</td>
+						<td>只有經過授權的人能存取資料，且需定期查核備份的存取及狀況</td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="far fa-circle"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+					</tr>
+					<tr>
+						<td colspan="6" style="text-align: center; vertical-align: middle; color: #d93954; background-color: #f7f7f7; font-weight:bold; font-size: 14px; padding: 0!important;">Storage on Removable Media (USBs, CDs, Backup Tapes, etc.)</td>
+					</tr>
+					<tr>
+						<td>Only approved removable media devices can be used to store data and data must be protected with an approved encryption method. (e.g. PwC encrypted USB drives (memory sticks) or WinZip encrypted files for CDs and DVDs.)<br><br>*Additional client approval and restrictions may apply.</td>
+						<td>只能透過認可的裝置存取資料，且需有加密保護(如PwC加密過的USB，or CD內的winzip)<br><br>*如有客戶要求也須符合客戶之存取條件</td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+					</tr>
+					<tr>
+						<td>Password protected device, file or media must be used.</td>
+						<td>儲存裝置需有密碼保護</td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+					</tr>
+					<tr>
+						<td>Must not use portable media as permanent storage as should be stored on system of records. Delete contents of memory sticks before and after use. Copy to PwC network any files created on smartphones or tablets.</td>
+						<td>不得使用可移動裝置作為永久存取之存放位置。使用後須清除內容。</td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+					</tr>
+					<tr>
+						<td colspan="6" style="text-align: center; vertical-align: middle; color: #d93954; background-color: #f7f7f7; font-weight:bold; font-size: 14px; padding: 0!important;">Storage on Personal or Mobile Devices (Smart Phones, Tablets, Laptops, etc.)</td>
+					</tr>
+					<tr>
+						<td>Device must be protected with password or PIN with forced timeout set to lock and secure device when not in use.</td>
+						<td>行動裝置密碼需有嘗試次數上限，超過將會鎖定或是清除。</td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+					</tr>
+					<tr>
+						<td>Device must be configured to allow remote wipe by Firm MDM solution.</td>
+						<td>行動裝置需設定可以從所內MDM遠端控制清除其內容</td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+					</tr>
+					<tr>
+						<td>Unattended devices must be powered down or in hibernate mode when outside the office or end of use.</td>
+						<td>當下無人使用的設備於所外或不使用時需關閉或休眠</td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+					</tr>
+					<tr>
+						<td>Must use PwC IT approved systems and equipment</td>
+						<td>須使用PwC IT認可的系統及裝置</td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+					</tr>
+					<tr>
+						<td colspan="6" style="text-align: center; vertical-align: middle; color: #d93954; background-color: #f7f7f7; font-weight:bold; font-size: 14px; padding: 0!important;">Retention, Disposal, and Destruction of Stored Data</td>
+					</tr>
+					<tr>
+						<td>Unless subject to legal hold, electronic information required as a record (to evidence work undertaken on engagements or otherwise to support the operations of the firm) should be transferred to and stored on the appropriate system of record and deleted at the end of its specified retention period.</td>
+						<td>除法律因素，電子資訊需轉移至並存儲在適當的系統中，並於指定的時間後刪除。</td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+					</tr>
+					<tr>
+						<td>Unless subject to legal hold, duplicate or superseded versions of records and electronic information that is not a record should be deleted at the end of the engagement or, at a maximum, two years after its last modification.</td>
+						<td>除法律因素，電子資訊之附本需於專案完成後，或最後修改日兩年後刪除。</td>
+						<td><i class="far fa-circle"></i></td>
+						<td><i class="far fa-circle"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+					</tr>
+					<tr>
+						<td colspan="6" style="text-align: center; vertical-align: middle; color: #d93954; background-color: #f7f7f7; font-weight:bold; font-size: 14px; padding: 0!important;">Physical Security</td>
+					</tr>
+					<tr>
+						<td>Individual workspaces should be clear of all data and media when not in use.</td>
+						<td>放置於工作區的資料若不在使用中應收妥</td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+					</tr>
+					<tr>
+						<td>Hard copy materials should be stored in a controlled area and locked in a file container / drawer / cabinet when not in active use.<br><br>Includes storage in locked safe in hotel left unattended.</td>
+						<td>非使用中實體資料須存放在能上鎖的置物空間內(抽屜、置物箱)。<br><br>包括飯店保險箱</td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="far fa-circle"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+					</tr>
+				</table>
+			</div>
+			<!-- End of Data Storage / at Rest section-->
+			<!-- Application Requirements section -->
+			<div style="display: none;">
+				<table>
+					<tr>
+						<th>英文敘述</th>
+						<th>中文敘述</th>
+						<th>Public</th>
+						<th>Internal</th>
+						<th>Confidential</th>
+						<th>Highly Confidential</th>
+					</tr>
+					<tr>
+						<td colspan="6" style="text-align: center; vertical-align: middle; color: #fff; background-color: #d93954; font-weight:bold; padding: 0!important;">Application Requirements</td>
+					</tr>
+					<tr>
+						<td colspan="6" style="text-align: center; vertical-align: middle; color: #d93954; background-color: #f7f7f7; font-weight:bold; font-size: 14px; padding: 0!important;">Authentication & Authorisation</td>
+					</tr>
+					<tr>
+						<td>External system interface and end user to application</td>
+						<td>對外網站或是系統驗證模式</td>
+						<td><i class="fas fa-minus"></i></td>
+						<td>Single-Factor</td>
+						<td>Multi-Factor</td>
+						<td>Multi-Factor</td>
+					</tr>
+					<tr>
+						<td>End user or client calling an application or service</td>
+						<td>使用者或是客戶使用的應用程式或服務</td>
+						<td>Open Access</td>
+						<td>Controlled</td>
+						<td>Controlled</td>
+						<td>Controlled</td>
+					</tr>
+					<tr>
+						<td>Managing Authenticated User Sessions</td>
+						<td>網站或是Application Session設定</td>
+						<td><i class="fas fa-minus"></i></td>
+						<td>Timeout<br>Inactive 4hr.<br>session max 8hr.</td>
+						<td>Timeout<br>Inactive 20 min.<br>Session max 8hr.</td>
+						<td>Timeout<br>Inactive 20 min.<br>Session max 8hr.</td>
+					</tr>
+					<tr>
+						<td>Application Resource Permission</td>
+						<td>應用程式資源存取權限</td>
+						<td>Least Privilege</td>
+						<td>Least Privilege</td>
+						<td>Least Privilege</td>
+						<td>Least Privilege</td>
+					</tr>
+					<tr>
+						<td>Data Security Training Required Prior to Access</td>
+						<td>存取資訊前之資安訓練</td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+					</tr>
+					<tr>
+						<td colspan="6" style="text-align: center; vertical-align: middle; color: #d93954; background-color: #f7f7f7; font-weight:bold; font-size: 14px; padding: 0!important;">Data Protection</td>
+					</tr>
+					<tr>
+						<td>Data in transit</td>
+						<td>傳輸中資料</td>
+						<td>Unencrypted</td>
+						<td>Encrypt from<br>end-user to app.</td>
+						<td>Encrypt All<br>Communication</td>
+						<td>Encrypt All</td>
+					</tr>
+					<tr>
+						<td>Data at rest</td>
+						<td>備份之資料</td>
+						<td>Unencrypted</td>
+						<td>Unencrypted</td>
+						<td>Encrypt for apps.<br>hosted external</td>
+						<td>Encrypt All</td>
+					</tr>
+					<tr>
+						<td>Application and data segregation</td>
+						<td>應用程式與資料分隔</td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="fas fa-minus"></i></td>
+						<td>Dedicated for Restricted</td>
+						<td>Dedicated</td>
+					</tr>
+					<tr>
+						<td>Validating Input and Output Data</td>
+						<td>資料輸入和輸出驗證</td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+					</tr>
+					<tr>
+						<td>Audit Trail</td>
+						<td>保留稽核Log</td>
+						<td>Optional</td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+					</tr>
+					<tr>
+						<td>Production data allowed in Non-Production environments</td>
+						<td>將正式環境資料使用於非正式環境中</td>
+						<td>Allowed</td>
+						<td>Allowed</td>
+						<td>Sanitised/ Masked</td>
+						<td>Sanitised/ Masked</td>
+					</tr>
+					<tr>
+						<td colspan="6" style="text-align: center; vertical-align: middle; color: #d93954; background-color: #f7f7f7; font-weight:bold; font-size: 14px; padding: 0!important;">Third Party and Hosting</td>
+					</tr>
+					<tr>
+						<td>Application hosting external</td>
+						<td>程式設置於PwC外部</td>
+						<td>Allowed</td>
+						<td>Allowed</td>
+						<td>Allowed</td>
+						<td>Allowed in Isolated Env.<br>w/NIS approval</td>
+					</tr>
+					<tr>
+						<td>Oversight of Third Party Suppliers</td>
+						<td>監督第三方供應商</td>
+						<td><i class="fas fa-minus"></i></td>
+						<td><i class="fas fa-minus"></i></td>
+						<td>Independent Verification</td>
+						<td>Independent Verification</td>
+					</tr>
+					<tr>
+						<td colspan="6" style="text-align: center; vertical-align: middle; color: #d93954; background-color: #f7f7f7; font-weight:bold; font-size: 14px; padding: 0!important;">Security Assessment</td>
+					</tr>
+					<tr>
+						<td>Vulnerability, static code review and penetration testing prior to production implementation</td>
+						<td>程式上線前經過資安測試</td>
+						<td>Source Code Scan; Pen Test every 3 years</td>
+						<td>Source Code Scan; Pen Test every 3 years</td>
+						<td>Source Code Scan; Pen Test annual</td>
+						<td>Source Code Scan; Pen Test annual</td>
+					</tr>
+					<tr>
+						<td>Web Application Security Assessment</td>
+						<td>Web應用安全性評估</td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+						<td><i class="fas fa-check"></i></td>
+					</tr>
+					<tr>
+						<td colspan="6" style="text-align: center; vertical-align: middle; color: #d93954; background-color: #f7f7f7; font-weight:bold; font-size: 14px; padding: 0!important;">Mobility Computing</td>
+					</tr>
+					<tr>
+						<td>Mobile Applications</td>
+						<td>行動裝置應用程式</td>
+						<td><i class="fas fa-minus"></i></td>
+						<td>Isolated</td>
+						<td>Isolated & Encrypted</td>
+						<td>Isolated & Encrypted</td>
+					</tr>
+				</table>
+			</div>
+			<!-- End of Application Requirements section-->
+			</div>
+			<!-- / tabs_item -->
+		</div>
+		<!-- / tab_content -->
+	</div>
+	<!-- / tab -->
+</body>
+
+</html>
